@@ -6,7 +6,8 @@
 
 body {
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
+    background-color: black;
 }
 
 @font-face {
@@ -29,80 +30,81 @@ body {
     src: url('./Assets/Fonts/Hack.ttf');
 }
 
+/* ================================
+   CONTENEDOR PRINCIPAL: EXACTAMENTE 100VH 
+   ================================ */
 .App {
     text-align: center;
     background-image: url("./Assets/Img/fondo.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh; /* Para navegadores móviles (barras de direcciones) */
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Nunca permitimos scroll */
 }
 
-.title {
-    display: flex;
-    background: rgb(0, 0, 0);
-    padding: 2vh 0; 
-    align-items: stretch;
-}
+/* ================================
+   GRILLA DE ALTURAS PORCENTUALES (SUMA: 100%) 
+   ================================ */
+.title            { height: 10%; display: flex; background: rgb(0, 0, 0); align-items: stretch; }
+.titleSub         { height: 18%; display: flex; align-items: center; justify-content: space-between; }
+.divServicios     { height: 32%; display: flex; align-items: center; justify-content: center; }
+.divResumenCorreo { height: 12%; display: flex; align-items: center; justify-content: center; }
+.contactos        { height: 18%; display: flex; align-items: stretch; }
+.pie              { height: 10%; display: flex; background: rgb(0, 0, 0); align-items: stretch; }
 
+/* 1. TITLE */
 .title1 {
     clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
-    margin: 0 auto 0 0;
     background: rgb(192, 3, 3);
     width: 40%;
     display: flex;
-    padding: 10px 0;
-}
-
-.title1h1 {
-    margin: auto;
-    color: white;
-    font-size: clamp(2rem, 5.5vw, 4.5rem);
-    font-family: airstrike;
-}
-
-.title2 {
-    margin: 0 0 0 auto;
-    width: 50%;
-    display: flex;
-    padding: 10px 0;
-}
-
-.title2h1 {
-    font-family: airstrike;
-    color: rgb(192, 3, 3);
-    margin: auto;
-    font-size: clamp(2rem, 5.5vw, 4.5rem);
-}
-
-.titleSub {
-    display: flex;
-    padding: 2vh 0;
+    justify-content: center;
     align-items: center;
 }
+.title1h1 {
+    color: white;
+    font-size: min(5.5vw, 6vh);
+    font-family: airstrike;
+}
+.title2 {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+.title2h1 {
+    color: rgb(192, 3, 3);
+    font-size: min(5.5vw, 6vh);
+    font-family: airstrike;
+}
 
+/* 2. TITLE SUB */
 .titleServicio {
     background: rgb(0, 0, 0);
     display: flex;
     clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%);
     width: 50%;
-    padding: 2vh 0;
+    height: 100%;
+    align-items: center;
     justify-content: flex-end;
-    gap: 15px;
+    padding-right: 5%;
+    gap: 4%;
 }
-
 .tool {
-    width: clamp(40px, 7vw, 100px);
+    height: 40%;
+    max-width: 15vw;
+    object-fit: contain; /* Encajamos perfectamente y no estiramos */
 }
-
 .titleServicioh1 {
     font-family: conthrax;
     color: rgb(209, 207, 207);
-    font-size: clamp(1rem, 3vw, 2.5rem);
+    font-size: min(2.8vw, 4vh);
     text-decoration: underline;
-    margin-right: 15%;
 }
 
 @keyframes destello {
@@ -112,238 +114,204 @@ body {
 
 .logo {
     margin: auto;
-    width: clamp(120px, 20vh, 280px);
+    height: 70%;
+    max-width: 40vw;
+    object-fit: contain;
     animation: destello 1.5s infinite ease-in-out;
 }
 
+/* 3. SERVICIOS */
 .divServicios {
-    display: flex;
-    flex-wrap: wrap; 
-    padding: 4vh 2vw;
-    align-items: center;
-    justify-content: center;
-    gap: 3vw;
-    flex: 1; 
+    gap: 3%;
+    padding: 0 2%;
 }
-
 .sPss {
-    margin: auto;
-    width: clamp(200px, 25vw, 450px);
+    height: 80%;
+    max-width: 35vw;
+    object-fit: contain;
     transition: filter 0.5s;
 }
 .sPss:hover {
     filter: brightness(1) drop-shadow(0 0 8px rgba(253, 2, 2, 0.377));
 }
-
 .servicios {
-    width: auto;
-    max-width: 60vw;
-    margin: auto;
+    width: 55vw;
+    height: 90%;
     display: flex;
     flex-direction: column;
-    gap: 1.5vh;
+    justify-content: center;
+    gap: 2%;
 }
-
 .servicio {
-    font-size: clamp(1.2rem, 2.4vw, 2.5rem);
+    font-size: min(2vw, 3vh);
     color: white;
     font-family: coolvetica;
     text-align: left;
+    line-height: 1.2;
 }
 
-.divResumenCorreo {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 3vh 2vw;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-
+/* 4. RESUMEN / CORREO */
 .resumen {
     width: 50%;
-    min-width: 300px; 
+    height: 100%;
     display: flex;
-    padding: 10px;
-    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2%;
 }
-
 .resumenh3 {
-    width: 90%;
-    margin: auto;
+    width: 100%;
     font-family: Hack;
-    font-size: clamp(1.1rem, 1.4vw, 1.8rem);
+    font-size: min(1.4vw, 2.2vh);
     color: red;
     text-align: center;
 }
-
 .correo {
     width: 50%;
-    min-width: 300px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1;
-    gap: 15px;
-    padding: 10px;
+    gap: 2%;
 }
-
 .aGmail {
     display: flex;
+    align-items: center;
+    height: 100%;
 }
-
 .gmail {
-    margin: 0;
-    width: clamp(35px, 3.5vw, 70px);
+    height: 4vh;
+    min-height: 20px;
+    object-fit: contain;
     cursor: pointer;
 }
-
 .correoh1 {
     font-family: conthrax;
     color: rgb(98, 127, 255);
-    font-size: clamp(1.1rem, 2.5vw, 2.2rem);
+    font-size: min(1.8vw, 3vh);
     text-decoration: underline;
     cursor: pointer;
     word-break: break-all;
 }
-.correoh1:hover {
-    color: rgb(25, 67, 252);
-}
+.correoh1:hover { color: rgb(25, 67, 252); }
 
-.contactos {
-    display: flex;
-    padding: 2vh 0;
-    align-items: stretch;
-}
-
+/* 5. CONTACTOS */
 .contacto1 {
-    margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
+    height: 100%;
     text-decoration: none;
     transition: filter 0.5s;
-    padding: 2vh 0;
-    gap: 15px;
+    gap: 3%;
 }
-.contacto1:hover {
-    filter: brightness(1) drop-shadow(0 0 10px rgb(253, 2, 2));
-}
-
-.whatsapp {
-    width: clamp(45px, 6vw, 100px);
-}
-
-.contacto1h3 {
-    font-family: Hack;
-    font-size: clamp(1.6rem, 4vw, 3.5rem);
-    color: white;
-}
+.contacto1:hover { filter: brightness(1) drop-shadow(0 0 10px rgb(253, 2, 2)); }
+.whatsapp { height: 40%; max-width: 10vw; object-fit: contain; }
+.contacto1h3 { font-family: Hack; font-size: min(3.5vw, 5vh); color: white; }
 
 .contacto2 {
-    margin: auto;
     width: 50%;
+    height: 100%;
     background: rgb(0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: center;
     clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
     text-decoration: none;
-    padding: 2vh 0;
-    gap: 15px;
+    gap: 3%;
 }
-.contacto2:hover .tel {
-    filter: brightness(1) drop-shadow(0 0 5px rgb(255, 1, 1));
-}
-.contacto2:hover .contacto2h3 {
-    filter: brightness(1) drop-shadow(0 0 5px rgb(255, 0, 0));
-}
+.contacto2:hover .tel { filter: brightness(1) drop-shadow(0 0 5px rgb(255, 1, 1)); }
+.contacto2:hover .contacto2h3 { filter: brightness(1) drop-shadow(0 0 5px rgb(255, 0, 0)); }
+.tel { height: 40%; max-width: 10vw; object-fit: contain; transition: filter 0.5s; }
+.contacto2h3 { font-family: Hack; font-size: min(3.5vw, 5vh); color: white; transition: filter 0.5s; }
 
-.tel {
-    transition: filter 0.5s;
-    width: clamp(40px, 5vw, 90px);
-}
-
-.contacto2h3 {
-    font-family: Hack;
-    font-size: clamp(1.6rem, 4vw, 3.5rem);
-    color: white;
-    transition: filter 0.5s;
-}
-
-.pie {
-    display: flex;
-    background: rgb(0, 0, 0);
-    padding: 2vh 0;
-    align-items: stretch;
-}
-
+/* 6. PIE */
 .pie2 {
-    margin: 0 0 0 auto;
     width: 60%;
     display: flex;
-    padding: 10px 0;
+    justify-content: center;
+    align-items: center;
 }
-
-.pie2h1 {
-    font-family: airstrike;
-    color: rgb(192, 3, 3);
-    margin: auto;
-    font-size: clamp(2rem, 5.5vw, 4.5rem);
-}
+.pie2h1 { font-family: airstrike; color: rgb(192, 3, 3); font-size: min(5vw, 6vh); }
 
 .pie1 {
     clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
-    margin: 0 0 0 auto;
     background: rgb(192, 3, 3);
     width: 40%;
     display: flex;
-    padding: 10px 0;
+    justify-content: center;
+    align-items: center;
 }
+.pie1h1 { color: rgb(251, 255, 0); font-size: min(5vw, 6vh); font-family: airstrike; }
 
-.pie1h1 {
-    margin: auto;
-    color: rgb(251, 255, 0);
-    font-size: clamp(2rem, 5.5vw, 4.5rem);
-    font-family: airstrike;
-}
-
-/* Simplified Media Queries for robust responsive experience */
+/* ================================
+   AJUSTES PARA MÓVILES (MANTIENE 100VH SIN SCROLL)
+   ================================ */
 @media (max-width: 900px) {
+    .titleServicio {
+        justify-content: center;
+        padding-right: 0;
+    }
+    
     .divServicios {
         flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .sPss {
+        height: 40%; 
+        max-width: 60vw;
     }
     .servicios {
         width: 90vw;
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 20px 0;
+        height: 45%;
+        gap: 2%;
     }
+    .servicio {
+        font-size: min(3.5vw, 2.5vh);
+        text-align: center;
+    }
+
+    .divResumenCorreo {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .resumen {
+        width: 95%;
+        height: 45%;
+        padding: 0;
+    }
+    .resumenh3 {
+        font-size: min(3.5vw, 1.8vh);
+    }
+    .correo {
+        width: 100%;
+        height: 45%;
+    }
+
     .contacto1, .contacto2 {
         flex-direction: column;
-        gap: 10px;
+        justify-content: center;
+        gap: 5%;
+    }
+    .whatsapp, .tel {
+        height: 35%;
     }
     .contacto1h3, .contacto2h3 {
-        text-align: center;
+        font-size: min(5vw, 3vh);
     }
 }
 
 @media (max-width: 600px) {
-    .titleServicio {
-        padding: 2vh 10px;
-        justify-content: center;
-        width: 60%;
-    }
-    .titleServicioh1{
-        margin-right: 0;
-    }
-    .resumen {
-        min-width: 100%;
-    }
-    .correo {
-        min-width: 100%;
-        flex-direction: column;
-        gap: 15px;
-    }
+    /* Redistribuir la altura para darle más oxígeno al medio en pantallas pequeñas y evitar que colapse visualmente */
+    .title, .pie { height: 8%; }
+    .titleSub { height: 15%; }
+    .divServicios { height: 41%; }
+    .divResumenCorreo { height: 15%; }
+    .contactos { height: 13%; }
+
+    .title1h1, .title2h1, .pie1h1, .pie2h1 { font-size: min(6vw, 4vh); }
+    .titleServicioh1 { font-size: min(4vw, 3vh); }
+    
+    .logo { height: 60%; max-width: 40vw; }
 }
